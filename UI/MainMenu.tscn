@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://UI/Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/m5x7.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://UI/MainMenu.cs" type="Script" id=3]
+[ext_resource path="res://Levels/Background/tile3.png" type="Texture" id=4]
+[ext_resource path="res://Levels/Background/tile1.png" type="Texture" id=5]
+[ext_resource path="res://Levels/Background/tile2.png" type="Texture" id=6]
+[ext_resource path="res://Levels/Background.cs" type="Script" id=7]
+
+[sub_resource type="AnimatedTexture" id=1]
+flags = 2
+frames = 3
+pause = true
+frame_0/texture = ExtResource( 4 )
+frame_0/delay_sec = 10.0
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 6 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+follow_viewport_enable = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="Sprite" type="Sprite" parent="Background/ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 2, 2 )
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1920, 1080 )
+script = ExtResource( 7 )
+minTime = 2
+maxTime = 4
+
+[node name="Timer" type="Timer" parent="Background/ParallaxBackground/ParallaxLayer"]
+wait_time = 10.0
+autostart = true
+
+[node name="Button" type="Button" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.593
+anchor_right = 0.5
+anchor_bottom = 0.593
+margin_left = -266.5
+margin_top = -0.440063
+margin_right = 266.5
+margin_bottom = 139.56
+focus_neighbour_bottom = NodePath("../Button2")
+focus_next = NodePath("../Button2")
+custom_fonts/font = ExtResource( 1 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.762
+anchor_right = 0.5
+anchor_bottom = 0.762
+margin_left = -266.5
+margin_top = 0.0400391
+margin_right = 266.5
+margin_bottom = 140.04
+focus_neighbour_top = NodePath("../Button")
+focus_previous = NodePath("../Button")
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.112963
+anchor_right = 0.5
+anchor_bottom = 0.112963
+margin_left = -339.0
+margin_top = -1.99999
+margin_right = 339.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 2 )
+text = "Game About Electrons"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+[connection signal="timeout" from="Background/ParallaxBackground/ParallaxLayer/Timer" to="Background/ParallaxBackground/ParallaxLayer/Sprite" method="Timeout"]
+[connection signal="pressed" from="Background/Button" to="." method="Start"]
+[connection signal="pressed" from="Background/Button2" to="." method="Quit"]

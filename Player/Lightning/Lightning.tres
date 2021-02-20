@@ -1,0 +1,16 @@
+[gd_resource type="AnimatedTexture" load_steps=4 format=2]
+
+[ext_resource path="res://Player/Lightning/tile4.png" type="Texture" id=1]
+[ext_resource path="res://Player/Lightning/tile5.png" type="Texture" id=4]
+[ext_resource path="res://Player/Lightning/tile3.png" type="Texture" id=5]
+
+[resource]
+flags = 2
+frames = 3
+fps = 0.0
+frame_0/texture = ExtResource( 5 )
+frame_0/delay_sec = 0.1
+frame_1/texture = ExtResource( 1 )
+frame_1/delay_sec = 0.1
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.1

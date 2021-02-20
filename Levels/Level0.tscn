@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/TileMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/EntityMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/Level.cs" type="Script" id=5]
+[ext_resource path="res://UI/Light.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/m5x7.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI/buttons.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 7 )
+
+[node name="Level0" type="Node2D"]
+script = ExtResource( 5 )
+zap = false
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -279.679, 184.911 )
+
+[node name="TileMap" parent="." instance=ExtResource( 3 )]
+tile_data = PoolIntArray( 131072, 0, 0, 131073, 0, 1, 131074, 1, 1, 131075, 1, 1, 131076, 1, 1, 131077, 1, 1, 131078, 1, 2, 262138, 1, 0, 262139, 1, 1, 262140, 1, 1, 262141, 1, 1, 262142, 1, 1, 262143, 1, 1, 196608, 0, 131074 )
+
+[node name="EntityMap" parent="." instance=ExtResource( 4 )]
+centered_textures = true
+tile_data = PoolIntArray( 65541, 2, 0 )
+
+[node name="ProtonLine" type="Line2D" parent="."]
+z_index = -1
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 1
+
+[node name="Background" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 6 )]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -296.0
+margin_top = 1.0
+margin_right = 296.0
+margin_bottom = 106.0
+custom_fonts/font = SubResource( 1 )
+text = "Move using     or 
+Jump with  ,  or "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite3" type="Sprite" parent="Label"]
+position = Vector2( 260, 33 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 36, 13, 12, 13 )
+
+[node name="Sprite4" type="Sprite" parent="Label"]
+position = Vector2( 294, 33 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 48, 13, 12, 13 )
+
+[node name="Sprite5" type="Sprite" parent="Label"]
+position = Vector2( 404, 34 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 21, 21, 21 )
+
+[node name="Sprite6" type="Sprite" parent="Label"]
+position = Vector2( 231, 86 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 12, 0, 12, 13 )
+
+[node name="Sprite7" type="Sprite" parent="Label"]
+position = Vector2( 372, 101 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 24, 26, 12, 26 )
+
+[node name="Sprite8" type="Sprite" parent="Label"]
+position = Vector2( 281, 86 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 12, 13 )
