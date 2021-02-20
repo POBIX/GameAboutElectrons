@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Levels/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/EntityMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/Level.cs" type="Script" id=5]
+[ext_resource path="res://UI/Light.tscn" type="PackedScene" id=6]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 6 )]
+
+[node name="EntityMap" parent="." instance=ExtResource( 2 )]
+centered_textures = true
+tile_data = PoolIntArray( 131076, 0, 0, 131081, 0, 0, 131085, 0, 0, 131096, 2, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 393232, 1, 0 )
+
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -327673, 2, 0, -327669, 2, 0, -327665, 2, 0, -262137, 2, 131072, -262133, 2, 131072, -262129, 2, 65536, -196593, 2, 65536, -131057, 2, 65536, -65529, 2, 0, -65525, 2, 0, -65521, 2, 131072, 65534, 1, 0, 65535, 1, 1, 0, 1, 1, 1, 1, 2, 7, 2, 65536, 11, 2, 65536, 65543, 2, 65536, 65547, 2, 65536, 65562, 2, 0, 131079, 2, 65536, 131083, 2, 65536, 131098, 2, 65536, 196615, 2, 65536, 196619, 2, 65536, 196623, 2, 0, 196627, 1, 0, 196628, 1, 1, 196629, 1, 1, 196630, 1, 1, 196631, 1, 1, 196632, 1, 1, 196633, 0, 131073, 196634, 0, 131074, 262151, 2, 65536, 262155, 2, 65536, 262159, 2, 65536, 327687, 2, 131072, 327691, 2, 131072, 327695, 2, 131072 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -3.36737, -25.8166 )
+
+[node name="ProtonLine" type="Line2D" parent="."]
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 1
+
+[node name="Background" parent="." instance=ExtResource( 4 )]

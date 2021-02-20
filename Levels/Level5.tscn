@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Levels/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/EntityMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/Level.cs" type="Script" id=5]
+[ext_resource path="res://UI/Light.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/Font.tres" type="DynamicFont" id=7]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 6 )]
+
+[node name="EntityMap" parent="." instance=ExtResource( 2 )]
+centered_textures = true
+tile_data = PoolIntArray( -720887, 0, 0, -720878, 2, 0, -524283, 4, 0, -524282, 1, 0, -524281, 1, 0, -524280, 1, 0, -524279, 1, 0, -524278, 1, 0, -524277, 1, 0, -524276, 1, 0, -524275, 5, 0, -196605, 0, 0 )
+
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -786412, 2, 0, -720894, 2, 0, -720876, 0, 65538, -655358, 2, 65536, -655347, 0, 0, -655346, 0, 1, -655345, 1, 1, -655344, 1, 1, -655343, 1, 1, -655342, 1, 1, -655341, 0, 131073, -655340, 0, 131074, -589822, 2, 65536, -589819, 2, 0, -589811, 0, 65536, -524286, 2, 65536, -524283, 2, 65536, -524275, 2, 65536, -458750, 2, 131072, -458747, 2, 65536, -458739, 2, 131072, -393211, 2, 65536, -327675, 2, 131072, 65535, 1, 0, 0, 1, 1, 1, 1, 1, 2, 1, 2 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="ProtonLine" type="Line2D" parent="."]
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 1
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -17.1498
+margin_top = -118.084
+margin_right = 204.85
+margin_bottom = -39.0838
+custom_fonts/font = ExtResource( 7 )
+text = "You can jump 
+on walls too."
+__meta__ = {
+"_edit_use_anchors_": false
+}

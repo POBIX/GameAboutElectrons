@@ -1,0 +1,6 @@
+<Project Sdk="Godot.NET.Sdk/3.2.3">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>Brackeys2021.Empty</RootNamespace>
+  </PropertyGroup>
+</Project>

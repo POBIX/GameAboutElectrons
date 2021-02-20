@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brackeys 2021.1", "Brackeys 2021.1.csproj", "{FDED2D7C-579D-4C5C-966C-DF30A227A65D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDED2D7C-579D-4C5C-966C-DF30A227A65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDED2D7C-579D-4C5C-966C-DF30A227A65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDED2D7C-579D-4C5C-966C-DF30A227A65D}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{FDED2D7C-579D-4C5C-966C-DF30A227A65D}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{FDED2D7C-579D-4C5C-966C-DF30A227A65D}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{FDED2D7C-579D-4C5C-966C-DF30A227A65D}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
