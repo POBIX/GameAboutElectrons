@@ -23,5 +23,5 @@ https://github.com/NirOren1 - Tester, Moral support
 https://github.com/OfekShilon - Physicist  
 
 ### more details
-The game was made using the Godot engine v. 3.2.3 Mono  
+The game was made for the [Brackeys 2021.1 Game Jam](https://itch.io/jam/brackeys-5) using the Godot engine v.3.2.3 Mono  
 It was programmed using the C# language.
