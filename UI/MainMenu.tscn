@@ -105,6 +105,7 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
 [connection signal="timeout" from="Background/ParallaxBackground/ParallaxLayer/Timer" to="Background/ParallaxBackground/ParallaxLayer/Sprite" method="Timeout"]
 [connection signal="pressed" from="Background/Button" to="." method="Start"]
 [connection signal="pressed" from="Background/Button2" to="." method="Quit"]

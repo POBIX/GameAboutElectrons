@@ -9,10 +9,13 @@ public class Victory : CanvasLayer
     {
         base._Ready();
 
-        GetNode<Label>("Time").Text += $"{Math.Round(SpeedrunTimer.Time, 1)} seconds!";
-#if HTML5
+        GetNode<Label>("Time").Text += $"{TimeSpan.FromSeconds(SpeedrunTimer.Time):m\\:ss} minutes!";
+        GetNode<Button>("Button").GrabFocus();
+        #if HTML5
         GetNode("Button").QueueFree();
 #endif
+
+        MusicPlayer.Ref.Play();
     }
 
 #if !HTML5

@@ -10,15 +10,17 @@ public class MainMenu : CanvasLayer
         base._Ready();
 
         GetNode<Button>("Background/Button").GrabFocus();
-#if HTML5
+        SpeedrunTimer.ResetTime();
+        Level.ResetCounter();
+        #if HTML5
         GetNode("Background/Button2").QueueFree();
-#endif
+        #endif
     }
 
     // ReSharper disable once UnusedMember.Local (signal)
-    private void Start() => GetTree().ChangeScene("res://Levels/Level0.tscn");
+    private void Start() => GetTree().ChangeScene("res://Cutscene/One.tscn");
 
-#if !HTML5
+    #if !HTML5
     public override void _Process(float delta)
     {
         base._Process(delta);

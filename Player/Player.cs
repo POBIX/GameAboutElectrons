@@ -1,4 +1,7 @@
+using System;
 using Godot;
+using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public class Player : KinematicBody2D
 {
@@ -23,7 +26,7 @@ public class Player : KinematicBody2D
     private AnimationPlayer swapAnim;
     private Area2D protonField;
     private Line2D protonLine;
-    private RayCast2D protonRay;
+    private Label clock;
     private Level level;
 
     private Proton closest;
@@ -81,7 +84,9 @@ public class Player : KinematicBody2D
         wallR = GetNode<RayCast2D>("WJR");
         level = GetParent<Level>();
         protonLine = GetNode<Line2D>("../ProtonLine");
-        protonRay = GetNode<RayCast2D>("ProtonRay");
+        clock = GetNode<Label>("HUD/Label");
+
+        GetNode<Label>("HUD/Label2").Text = $"{Level.CurrentLevel}/15";
 
         Mode = Particle.Electron;
         swapAnim.Play(Mode.ToString());
@@ -95,11 +100,7 @@ public class Player : KinematicBody2D
         wallL.GlobalRotation = wallR.GlobalRotation = 0;
 
         if (GetState() != State.Zap && GetState() != State.Hook)
-        {
-            UpdateZap();
             HookAndZap();
-        }
-        UpdateLine();
 
         switch (GetState())
         {
@@ -159,6 +160,7 @@ public class Player : KinematicBody2D
                     SetState(State.Idle);
                 break;
             case State.Hook:
+                // HOLY FUCKING SHIT THIS IS SO GOOD AAAAAAAHHHHHHHHHHHHH
                 Move(maxSpeed: 2000, friction: 0.02f, air: false, jump: IsOnFloor());
 
                 Vector2 target = closest.GlobalPosition;
@@ -175,16 +177,11 @@ public class Player : KinematicBody2D
                     hookDistance = newPos.DistanceTo(target);
                 }
 
-                void ResetLine()
-                {
-                    protonLine.Width = 1;
-                    protonLine.Texture = null;
-                }
-
                 if (!Input.IsActionPressed("Grapple"))
                 {
                     SetState(State.Bounce);
-                    ResetLine();
+                    protonLine.Width = 1;
+                    protonLine.Texture = null;
                 }
                 break;
 
@@ -235,6 +232,17 @@ public class Player : KinematicBody2D
         }
 
         Pause.annoyingBug = false;
+
+        if (GetState() != State.Zap && GetState() != State.Hook)
+            UpdateZap();
+        UpdateLine();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        clock.Text = TimeSpan.FromSeconds(SpeedrunTimer.Time).ToString(@"mm\:ss");
     }
 
     private int lastMoveSign = 1;
@@ -253,17 +261,20 @@ public class Player : KinematicBody2D
         float closestDist = Mathf.Pi * ZapDistance * ZapDistance + 0.69420f;
         foreach (Proton body in protonField.GetOverlappingAreas())
         {
+            if (body == prevProton) continue;
+
+            Vector2 dir = GlobalPosition.DirectionTo(body.GlobalPosition);
+            Dictionary d = GetWorld2d().DirectSpaceState.IntersectRay(GlobalPosition, body.GlobalPosition, new Array{this, body});
+            if (d.Count != 0) continue;
+
             float dist = GlobalPosition.DistanceTo(body.GlobalPosition);
 
             // prioritize protons in the movement direction
-            Vector2 dir = GlobalPosition.DirectionTo(body.GlobalPosition);
             if (dir.x * sign > 0)
                 dist -= signCost;
 
-            if (Mathf.Abs(dist) < closestDist && body != prevProton)
+            if (Mathf.Abs(dist) < closestDist)
             {
-                protonRay.CastTo = ToLocal(body.GlobalPosition);
-                if (protonRay.IsColliding()) continue;
                 closestDist = dist;
                 closest = body;
             }
@@ -394,13 +405,4 @@ public class Player : KinematicBody2D
     }
 
     public void Die() => Spawner.Fade(this, Fade.In, () => GetTree().ReloadCurrentScene());
-
-    public void NextLevel()
-    {
-        string curr = GetParent().Filename;
-        int num = int.Parse(curr[^6].ToString());
-        string next = curr.Remove(curr.Length - 6, 1);
-        next = next.Insert(next.Length - 5, (num + 1).ToString());
-        GetTree().ChangeScene(next);
-    }
 }
